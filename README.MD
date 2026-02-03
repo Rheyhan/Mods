@@ -1,68 +1,48 @@
-# Description
-This respitory's subjected to be an archive for mods needed to join the `A minecraft server`.
+# Minecraft Mod Manager
 
-# Installation
-```{yaml}
-1. Donwload the new released application from this repo 
-2. Put it on your `.minecraft` directory.
-3. Run the application.
-```
+A desktop GUI that syncs a Minecraft installation with a Google Cloud Storage bucket. It can:
 
-# Mod list
-1. Alex's Caves
-2. filex's Mobs
-3. animation Overhaul
-4. architectury
-5. artifacts
-6. Backpacked
-7. Bendy lib
-8. Better animations Collection
-9. Better Combat
-10. BML
-11. cave dweller
-12. Citadel
-13. Cloth Config v10 API
-14. CreativeCore
-15. Curio API
-16. Easy Gunpowder
-17. Emotecraft
-18. Epic knights Mod
-19. ExpandAibility
-20. Farsighted Mobs
-21. Ferrite Core
-22. FPS Monitor
-23. Framework
-24. From The Fog
-25. FeckoLIB 4
-26. Improved Mobs Mod
-27. Item Despawn Timer
-28. Just Enough Items
-29. LesRaisinsAddon
-30. Lithosphere
-31. Marbled's API
-32. Marbled's arsenal
-33. MixinExtras
-34. ModernFix
-35. Moog's Woyager Structures
-36. Mawzie•s Mobs
-37. MrCrayfish's Furniture Mod
-38. Necronomicon
-39. Octal-ib
-40. Player animator
-41. PlayerRevive
-42. Puzzles access api
-43. Puzzles Lib
-44. RAM-Compat
-45. Relics
-46. Simple Voice Chat
-47. Small Ships
-48. TenshiLib
-49. The Knocker
-50. Timeless & Classics Guns: Zero
-51. TLSkinCape
-52. Ultimate Car Mod
-53. Ultris: Boss Expansion
-54. When Dungeons Arise
-55. Wrap Radial
-56. Xaero's World Map
-57. Better Day And Night
+- Download and update mods in the `mods` folder
+- Download and update TACZ zip files in the `tacz` folder
+- Replace `options.txt` with server-optimized settings
+- Show progress and detailed activity logs
+
+## What the app does
+
+The app connects to a configured GCS bucket and keeps your local files in sync:
+
+- **Fresh Install**: Deletes local `mods` and `tacz` folders, recreates them, then downloads all files plus `options.txt`.
+- **Update**: Syncs `mods` and `tacz` with the bucket (downloads missing files, deletes obsolete local files).
+- **Get Options**: Replaces your local `options.txt` with the version from the bucket.
+
+## Requirements
+
+- Windows
+- Python 3.10+ (if running from source)
+- `google-cloud-storage` installed
+- A valid Google Cloud service account JSON (see Setup)
+
+## Setup (from source)
+
+1. Ask rhey for credentials to access the GCS bucket and replace the `hidden_key`
+2. Install dependencies:
+
+	- `pip install google-cloud-storage`
+
+3. Run the app:
+
+	- `python app.py`
+
+## Usage
+
+1. Click **Select Minecraft Directory** and choose your `.minecraft` folder.
+2. Choose an action:
+	- **Fresh Install** for a clean full download.
+	- **Update** to sync changes.
+	- **Get Options** to replace `options.txt`.
+
+## Notes
+
+- The app validates the selected folder by checking for a `versions` directory.
+- All actions run in the background so the UI stays responsive.
+- Logs and progress are displayed in the right panel.
